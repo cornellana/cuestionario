@@ -11,11 +11,13 @@ import UIKit
 // Definicion de la encuesta
 
     let textoCuestion = "Quien es el mejor Equipo del Mundo?"
-    let lasRespuestas = ["a","b","c"]
-    let cuestionario = ["a":"Madrid","b":"Celta","c":"Barça"]
+    let cuestionario = ["a":"Madrid","b":"Celta","c":"Barcelona"]
     let respuestaPregunta = "c"
 
+//================================================================
+
     let numPreguntas = cuestionario.count
+    let lasRespuestas = cuestionario.keys // obtiene a,b,c, etc ...
     var respuestasBuenas = 0
 
 
@@ -26,6 +28,7 @@ import UIKit
     let incorrecto = UIImage(named: "incorrectAnswer")
 
     let fotoPregunta = UIImage(named: "futbol")
+    let barça = UIImage(named: "Barça")
 
 
 
@@ -122,10 +125,14 @@ class ViewController: UIViewController {
     
     func comprobarRespuesta(laRespuesta:String) {
         
+        fotoImagen.image = UIImage(named: cuestionario[laRespuesta]!)
+        
         if respuestaPregunta == laRespuesta {
             botones[laRespuesta]!.setImage(correcto, forState: UIControlState.Normal)
             respuestas[laRespuesta]!.textColor = verde
-            resultadoCorrecto(laRespuesta)}
+            resultadoCorrecto(laRespuesta)
+        
+        }
         else {
             botones[laRespuesta]!.setImage(incorrecto, forState: UIControlState.Normal)
             respuestas[laRespuesta]!.textColor = rojo

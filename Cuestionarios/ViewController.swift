@@ -8,22 +8,29 @@
 
 import UIKit
 
-let rojo = UIColor.redColor()
-let verde = UIColor.greenColor()
-let a = UIImage(named: "A")
-let b = UIImage(named: "B")
-let c = UIImage(named: "C")
+// Definicion de la encuesta
+
+    let textoCuestion = "Quien es el mejor Equipo del Mundo?"
+    let lasRespuestas = ["a","b","c"]
+    let cuestionario = ["a":"Madrid","b":"Celta","c":"Barça"]
+    let respuestaPregunta = "c"
+
+    let numPreguntas = cuestionario.count
+    var respuestasBuenas = 0
+
+
+    let rojo = UIColor.redColor()
+    let verde = UIColor.greenColor()
+
+    let correcto = UIImage(named: "correctAnswer")
+    let incorrecto = UIImage(named: "incorrectAnswer")
+
+    let fotoPregunta = UIImage(named: "futbol")
 
 
 
-let correcto = UIImage(named: "correctAnswer")
-let incorrecto = UIImage(named: "incorrectAnswer")
-
-let fotoPregunta = UIImage(named: "futbol")
-
-let cuestionario = [["Quien es el mejor equipo?","c"],["a","Madrid"],["b","Celta"],["c","Barça"]]
-let numPreguntas = cuestionario.count
-
+    var botones:[String:UIButton] = [:]
+    var respuestas:[String:UILabel] = [:]
 
 class ViewController: UIViewController {
 
@@ -39,30 +46,22 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var fotoImagen: UIImageView!
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        textoPregunta.text = cuestionario[0][0]
+        textoPregunta.text = textoCuestion
+
         fotoImagen.image = fotoPregunta
         
-        for var i = 1 ; i < numPreguntas ; ++i {
-            print(cuestionario[i][0])
-            switch i {
-            case 1:
-                respuestaAPregunta.text = cuestionario[i][1]
-                print(aButton.state)
-                aButton.setImage(a!, forState: UIControlState.Normal)
-            case 2:
-                respuestaBPregunta.text = cuestionario[i][1]
-                bButton.setImage(b!, forState: UIControlState.Normal)
-            case 3:
-                respuestaCPregunta.text = cuestionario[i][1]
-                cButton.setImage(c!, forState: UIControlState.Normal)
-            default: ()
-            }
+        
+         botones = ["a":aButton, "b":bButton, "c":cButton]
+         respuestas = ["a":respuestaAPregunta, "b":respuestaBPregunta, "c":respuestaCPregunta]
+        
+        for var i: String in lasRespuestas {
+            
+            pintaPregunta(i)
         }
         
         
@@ -73,6 +72,73 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    @IBAction func aButtonPressed(sender: UIButton) {
+        
+        comprobarRespuesta("a")
+        
+        }
+    
+    @IBAction func bButtonPressed(sender: UIButton) {
+        
+        comprobarRespuesta("b")
+        
+    }
+    
+    @IBAction func cButtonPressed(sender: UIButton) {
+        
+        comprobarRespuesta("c")
+    }
+    
+    func resultadoCorrecto (laCorrectaEs:String) {
+
+        for var i: String in lasRespuestas {
+        botones[i]!.enabled = false
+        if laCorrectaEs == i {
+            botones[i]!.enabled = true
+            respuestasBuenas++
+        }
+      }
+    }
+    
+    func resultadoIncorrecto (laCorrectaEs:String) {
+        
+        for var i: String in lasRespuestas {
+            botones[i]!.enabled = false
+            if laCorrectaEs == i {
+                botones[i]!.enabled = true
+            }
+        }
+        
+    }
+    
+    func pintaPregunta (laPregunta:String) {
+        
+        respuestas[laPregunta]!.text = cuestionario[laPregunta]
+        botones[laPregunta]!.hidden = false
+        botones[laPregunta]!.setImage(UIImage(named: laPregunta.capitalizedString), forState: UIControlState.Normal)
+
+    }
+    
+    func comprobarRespuesta(laRespuesta:String) {
+        
+        if respuestaPregunta == laRespuesta {
+            botones[laRespuesta]!.setImage(correcto, forState: UIControlState.Normal)
+            respuestas[laRespuesta]!.textColor = verde
+            resultadoCorrecto(laRespuesta)}
+        else {
+            botones[laRespuesta]!.setImage(incorrecto, forState: UIControlState.Normal)
+            respuestas[laRespuesta]!.textColor = rojo
+            resultadoIncorrecto(laRespuesta)}
+        
+    }
+
 
 }
+    
+    
+    
+    
+
+
 

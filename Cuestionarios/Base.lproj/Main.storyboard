@@ -53,17 +53,29 @@
                                 <rect key="frame" x="71" y="96" width="250" height="250"/>
                                 <animations/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzI-9t-dwk">
-                                <rect key="frame" x="20" y="455" width="30" height="30"/>
-                                <animations/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-S0-q3b">
-                                <rect key="frame" x="20" y="519" width="30" height="30"/>
-                                <animations/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFb-dy-oKv">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFb-dy-oKv">
                                 <rect key="frame" x="20" y="392" width="30" height="30"/>
                                 <animations/>
+                                <state key="normal" image="A"/>
+                                <connections>
+                                    <action selector="aButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FVt-gB-nfE"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzI-9t-dwk">
+                                <rect key="frame" x="20" y="455" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" image="B"/>
+                                <connections>
+                                    <action selector="bButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ztq-si-AM3"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-S0-q3b">
+                                <rect key="frame" x="20" y="519" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" image="C"/>
+                                <connections>
+                                    <action selector="cButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="efk-wm-buh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -85,4 +97,9 @@
             <point key="canvasLocation" x="340" y="429"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="A" width="30" height="30"/>
+        <image name="B" width="30" height="30"/>
+        <image name="C" width="30" height="30"/>
+    </resources>
 </document>

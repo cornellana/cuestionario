@@ -10,11 +10,12 @@ import UIKit
 
 // Definicion de la encuesta
 
-    let cuestionario = ["a":"Madrid","b":"Celta","c":"Barcelona"]
     var preguntasExamen = [[String]]()
     var alternativasPregunta = [[String]]()
     var respuestaPregunta = ""
     let indicePreguntas = ["a","b","c","d"]
+    let maxPreguntas = indicePreguntas.count
+
 //================================================================
 
     var respuestasBuenas = 0
@@ -85,9 +86,7 @@ class ViewController: UIViewController {
         respuestaPregunta = preguntasExamen[numPagina][1]
         fotoImagen.image = UIImage(named: preguntasExamen[numPagina][2])
         
-        var lasRespuestas = alternativasPregunta[numPagina].count
-        
-        for var i:Int = 0; i < lasRespuestas; i++ {
+        for var i:Int = 0; i < maxPreguntas; i++ {
             pintaPregunta(numPagina, ind: i)
         }
         
@@ -125,7 +124,7 @@ class ViewController: UIViewController {
         reactivateButtons()
         
         //for var i:Int = 0; i < alternativasPregunta[numPagina].count; i++ {
-        for var i:Int = 0; i < 4; i++ {
+        for var i:Int = 0; i < maxPreguntas; i++ {
         pintaPregunta(numPagina, ind: i)
         }
         
@@ -154,13 +153,13 @@ class ViewController: UIViewController {
 
     @IBAction func backButtonPressed(sender: UIButton) {
     
-        if numPagina >= 3 {
+        if numPagina >= (maxPreguntas-1) {
             numPagina = numPagina-2
         }
         textoPregunta.text = preguntasExamen[numPagina][0]
         reactivateButtons()
         
-        for var i:Int = 0; i < 4; i++ {
+        for var i:Int = 0; i < maxPreguntas; i++ {
             pintaPregunta(numPagina, ind: i)
         }
         
@@ -184,10 +183,8 @@ class ViewController: UIViewController {
         }
         numPagina++
         
-    }
-        
-
-        
+      }
+    
     }
     
     

@@ -11,9 +11,9 @@
 		98B623891BE686A5001F6E35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B623881BE686A5001F6E35 /* ViewController.swift */; };
 		98B6238C1BE686A5001F6E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B6238A1BE686A5001F6E35 /* Main.storyboard */; };
 		98B6238E1BE686A5001F6E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98B6238D1BE686A5001F6E35 /* Assets.xcassets */; };
-		98B623911BE686A5001F6E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B6238F1BE686A5001F6E35 /* LaunchScreen.storyboard */; };
 		98B6239C1BE686A5001F6E35 /* CuestionariosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B6239B1BE686A5001F6E35 /* CuestionariosTests.swift */; };
 		98B623A71BE686A5001F6E35 /* CuestionariosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B623A61BE686A5001F6E35 /* CuestionariosUITests.swift */; };
+		98E5766C1BE809C60026373B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98E5766B1BE809C60026373B /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		98B623881BE686A5001F6E35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		98B6238B1BE686A5001F6E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98B6238D1BE686A5001F6E35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		98B623901BE686A5001F6E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98B623921BE686A5001F6E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		98B623971BE686A5001F6E35 /* CuestionariosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CuestionariosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B6239B1BE686A5001F6E35 /* CuestionariosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuestionariosTests.swift; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		98B623A21BE686A5001F6E35 /* CuestionariosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CuestionariosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		98B623A61BE686A5001F6E35 /* CuestionariosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuestionariosUITests.swift; sourceTree = "<group>"; };
 		98B623A81BE686A5001F6E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98E5766B1BE809C60026373B /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +77,7 @@
 		98B6237A1BE686A5001F6E35 = {
 			isa = PBXGroup;
 			children = (
+				98E5766B1BE809C60026373B /* Launch Screen.storyboard */,
 				98B623851BE686A5001F6E35 /* Cuestionarios */,
 				98B6239A1BE686A5001F6E35 /* CuestionariosTests */,
 				98B623A51BE686A5001F6E35 /* CuestionariosUITests */,
@@ -101,7 +102,6 @@
 				98B623881BE686A5001F6E35 /* ViewController.swift */,
 				98B6238A1BE686A5001F6E35 /* Main.storyboard */,
 				98B6238D1BE686A5001F6E35 /* Assets.xcassets */,
-				98B6238F1BE686A5001F6E35 /* LaunchScreen.storyboard */,
 				98B623921BE686A5001F6E35 /* Info.plist */,
 			);
 			path = Cuestionarios;
@@ -229,7 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98B623911BE686A5001F6E35 /* LaunchScreen.storyboard in Resources */,
+				98E5766C1BE809C60026373B /* Launch Screen.storyboard in Resources */,
 				98B6238E1BE686A5001F6E35 /* Assets.xcassets in Resources */,
 				98B6238C1BE686A5001F6E35 /* Main.storyboard in Resources */,
 			);
@@ -299,14 +299,6 @@
 				98B6238B1BE686A5001F6E35 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		98B6238F1BE686A5001F6E35 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				98B623901BE686A5001F6E35 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -484,6 +476,7 @@
 				98B623AD1BE686A5001F6E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98B623AE1BE686A5001F6E35 /* Build configuration list for PBXNativeTarget "CuestionariosTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +485,7 @@
 				98B623B01BE686A5001F6E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		98B623B11BE686A5001F6E35 /* Build configuration list for PBXNativeTarget "CuestionariosUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +494,7 @@
 				98B623B31BE686A5001F6E35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

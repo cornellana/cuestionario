@@ -12,6 +12,8 @@ import UIKit
 
     var preguntasExamen = [[String]]()
     var alternativasPregunta = [[String]]()
+    var misRespuestas = [[String]]()
+    //misRespuestas = [["x","x"],["x","x"],["x","x"],["x","x"]]
     var respuestaPregunta = ""
     let indicePreguntas = ["a","b","c","d"]
     let maxPreguntas = indicePreguntas.count
@@ -64,9 +66,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        misRespuestas = [["x","x"],["x","x"],["x","x"],["x","x"]]
         numeroPregunta.text = "\(numPagina)"
         numeroPuntos.text = "\(respuestasBuenas)"
+        
+        
         nextButton.hidden = false
         preguntasExamen = [["Trivia Animales","3","7","Animales"],
             ["A Playpus is:","c","platypus"],
@@ -85,6 +89,7 @@ class ViewController: UIViewController {
         textoPregunta.text = preguntasExamen[numPagina][0]
         respuestaPregunta = preguntasExamen[numPagina][1]
         fotoImagen.image = UIImage(named: preguntasExamen[numPagina][2])
+        
         
         for var i:Int = 0; i < maxPreguntas; i++ {
             pintaPregunta(numPagina, ind: i)
@@ -123,7 +128,6 @@ class ViewController: UIViewController {
         textoPregunta.text = preguntasExamen[numPagina][0]
         reactivateButtons()
         
-        //for var i:Int = 0; i < alternativasPregunta[numPagina].count; i++ {
         for var i:Int = 0; i < maxPreguntas; i++ {
         pintaPregunta(numPagina, ind: i)
         }
@@ -132,30 +136,26 @@ class ViewController: UIViewController {
         respuestaPregunta = preguntasExamen[numPagina][1]
         fotoImagen.image = UIImage(named: preguntasExamen[numPagina][2])
         
-        if numPagina == Int(preguntasExamen[0][1]) {
-            numPagina = 0
-        }
-        
         nextButton.hidden = false
         bacKButton.hidden = false
         
         if numPagina == 1 {
             bacKButton.hidden = true
         } else {
-            if numPagina == 0 {
+            if numPagina == maxPreguntas-1 {
                 nextButton.hidden = true
-                numPagina = numPagina+1
             }
         }
-        numPagina = numPagina+1
+        numPagina++
     }
-    
+
 
     @IBAction func backButtonPressed(sender: UIButton) {
     
         if numPagina >= (maxPreguntas-1) {
             numPagina = numPagina-2
         }
+        
         textoPregunta.text = preguntasExamen[numPagina][0]
         reactivateButtons()
         
@@ -185,7 +185,6 @@ class ViewController: UIViewController {
         
       }
     
-    }
     
     
     
@@ -194,17 +193,16 @@ class ViewController: UIViewController {
     
     
     func resultadoCorrecto (laCorrectaEs:String) {
-        //numeroPuntos.text = "\(respuestasBuenas)"
+
         for var i: String in indicePreguntas {
         botones[i]!.enabled = false
         if laCorrectaEs == i {
             botones[i]!.enabled = true
             respuestasBuenas++
-            
+            numeroPuntos.text = "\(respuestasBuenas)"
         }
       }
     }
-    
     func resultadoIncorrecto (laCorrectaEs:String) {
         
         for var i: String in indicePreguntas {
@@ -213,7 +211,6 @@ class ViewController: UIViewController {
                 botones[i]!.enabled = true
             }
         }
-        
     }
 
     func reactivateButtons(){
@@ -233,34 +230,61 @@ class ViewController: UIViewController {
             return
         }
         
-        respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
-        botones[indicePreguntas[ind]]!.hidden = false
-        botones[indicePreguntas[ind]]!.setImage(UIImage(named: indicePreguntas[ind].capitalizedString), forState: UIControlState.Normal)
-
-    }
-    
-    func comprobarRespuesta(laRespuesta:String) {
+        if misRespuestas[pagina][0] == "x" {
+            respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
+            botones[indicePreguntas[ind]]!.hidden = false
+            botones[indicePreguntas[ind]]!.setImage(UIImage(named: indicePreguntas[ind].capitalizedString), forState: UIControlState.Normal)
+        } else {
+            if misRespuestas[pagina][0] == indicePreguntas[ind] {
+                
+                if misRespuestas[pagina][1] == "c" {
+                    botones[indicePreguntas[ind]]!.setImage(correcto, forState: UIControlState.Normal)
+                    botones[indicePreguntas[ind]]!.enabled = false
+                    respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
+                    respuestas[indicePreguntas[ind]]!.textColor = verde
+                } else {
+                    botones[indicePreguntas[ind]]!.setImage(incorrecto, forState: UIControlState.Normal)
+                    botones[indicePreguntas[ind]]!.enabled = false
+                    respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
+                    respuestas[indicePreguntas[ind]]!.textColor = rojo
+                }
         
-        //fotoImagen.image = UIImage(named: cuestionario[laRespuesta]!)
+        } else {
+            
+            respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
+            botones[indicePreguntas[ind]]!.enabled = false
+            botones[indicePreguntas[ind]]!.setImage(UIImage(named: indicePreguntas[ind].capitalizedString), forState: UIControlState.Normal)
+            botones[indicePreguntas[ind]]!.hidden = false
+            }
+        }
+    }
+     
+
+
+    func comprobarRespuesta(laRespuesta:String) {
         
         if respuestaPregunta == laRespuesta {
             botones[laRespuesta]!.setImage(correcto, forState: UIControlState.Normal)
             respuestas[laRespuesta]!.textColor = verde
+            misRespuestas[numPagina-1][0] = laRespuesta
+            misRespuestas[numPagina-1][1] = "c"
             resultadoCorrecto(laRespuesta)
-        
         }
         else {
             botones[laRespuesta]!.setImage(incorrecto, forState: UIControlState.Normal)
             respuestas[laRespuesta]!.textColor = rojo
-            resultadoIncorrecto(laRespuesta)}
-        
+            misRespuestas[numPagina-1][0] = laRespuesta
+            misRespuestas[numPagina-1][1] = "i"
+            resultadoIncorrecto(laRespuesta)
+        }
+
     }
 
-    
+}
 
     
-    
-    
+
+
     
 
 

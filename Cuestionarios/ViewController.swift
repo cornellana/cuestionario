@@ -12,11 +12,12 @@ import UIKit
 
     var preguntasExamen = [[String]]()
     var alternativasPregunta = [[String]]()
-    var misRespuestas = [[String]]()
-    //misRespuestas = [["x","x"],["x","x"],["x","x"],["x","x"]]
+    var misRespuestas = Array<Array<String>>()
     var respuestaPregunta = ""
     let indicePreguntas = ["a","b","c","d"]
     let maxPreguntas = indicePreguntas.count
+    var maxPaginas = 0
+
 
 //================================================================
 
@@ -66,20 +67,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        misRespuestas = [["x","x"],["x","x"],["x","x"],["x","x"]]
         numeroPregunta.text = "\(numPagina)"
         numeroPuntos.text = "\(respuestasBuenas)"
         
         
         nextButton.hidden = false
-        preguntasExamen = [["Trivia Animales","3","7","Animales"],
+        preguntasExamen = [["Trivia Animales","4","7","Animales"],
             ["A Playpus is:","c","platypus"],
             ["Do polar bears eat penguins?","b","polarBear"],
-            ["What do giant pandas eat exclusively?","b","panda"]]
+            ["What do giant pandas eat exclusively?","b","panda"],
+            ["What kind of animal is the lion","a","leon"]]
         alternativasPregunta = [["a","b"],
             ["An Australian hedgehog","There is no such beast","A fuury mammal wich lays eggs, has a duck's bill and is poisonous"],
             ["No, it's bad for their figure","No they live in opposite poles of the planet","Yes it's their favorite snack","they need eat two every day"],
-            ["McDonalds's","Bamboo"]]
+            ["McDonalds's","Bamboo"],
+            ["Carnivoro","Hervivoro","omnivoro"]]
+         maxPaginas = alternativasPregunta.count - 1
+        
+
+
+        for var ii = 0 ; ii <= maxPaginas ; ii++ {
+            misRespuestas.append(Array(count:2, repeatedValue:"x"))
+        }
         
         // Pinta Pantalla Inicial
         
@@ -91,7 +100,7 @@ class ViewController: UIViewController {
         fotoImagen.image = UIImage(named: preguntasExamen[numPagina][2])
         
         
-        for var i:Int = 0; i < maxPreguntas; i++ {
+        for var i:Int = 0; i < maxPaginas; i++ {
             pintaPregunta(numPagina, ind: i)
         }
         
@@ -142,7 +151,7 @@ class ViewController: UIViewController {
         if numPagina == 1 {
             bacKButton.hidden = true
         } else {
-            if numPagina == maxPreguntas-1 {
+            if numPagina == maxPaginas {
                 nextButton.hidden = true
             }
         }
@@ -152,9 +161,8 @@ class ViewController: UIViewController {
 
     @IBAction func backButtonPressed(sender: UIButton) {
     
-        if numPagina >= (maxPreguntas-1) {
-            numPagina = numPagina-2
-        }
+    
+        numPagina = numPagina-2
         
         textoPregunta.text = preguntasExamen[numPagina][0]
         reactivateButtons()
@@ -239,11 +247,13 @@ class ViewController: UIViewController {
                 
                 if misRespuestas[pagina][1] == "c" {
                     botones[indicePreguntas[ind]]!.setImage(correcto, forState: UIControlState.Normal)
+                    botones[indicePreguntas[ind]]!.hidden = false
                     botones[indicePreguntas[ind]]!.enabled = false
                     respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
                     respuestas[indicePreguntas[ind]]!.textColor = verde
                 } else {
                     botones[indicePreguntas[ind]]!.setImage(incorrecto, forState: UIControlState.Normal)
+                    botones[indicePreguntas[ind]]!.hidden = false
                     botones[indicePreguntas[ind]]!.enabled = false
                     respuestas[indicePreguntas[ind]]!.text = alternativasPregunta[pagina][ind]
                     respuestas[indicePreguntas[ind]]!.textColor = rojo

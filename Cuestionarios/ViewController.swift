@@ -129,6 +129,7 @@ class ViewController: UIViewController {
         comprobarRespuesta("d")
     }
     @IBAction func darLaRespuesta(sender: UIButton) {
+        respuestasBuenas--
         comprobarRespuesta(respuestaPregunta)
     }
   
